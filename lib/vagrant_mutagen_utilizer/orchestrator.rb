@@ -87,10 +87,11 @@ module VagrantPlugins
       end
 
       def ssh_config_entry
+        name = @machine.name
         hostname = @machine.config.vm.hostname
 
         # Get the SSH config from Vagrant
-        sshconfig = `vagrant ssh-config --host #{hostname}`
+        sshconfig = `vagrant ssh-config --host #{hostname} #{name}`
         # Trim Whitespace from end
         sshconfig = sshconfig.gsub(/^$\n/, '')
         sshconfig = sshconfig.chomp
